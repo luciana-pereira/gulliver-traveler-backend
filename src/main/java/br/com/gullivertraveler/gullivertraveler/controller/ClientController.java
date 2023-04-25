@@ -1,26 +1,24 @@
-package Controller;
+package br.com.gullivertraveler.gullivertraveler.controller;
 
-import br.com.gullivertraveler.api.model.Cliente;
+import br.com.gullivertraveler.gullivertraveler.model.Client;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-
-        @RestController
+@RestController
         @CrossOrigin("http://localhost:3000")
-        @Api(tags = { "Cliente" }, value = "clientes", description = "Operações relacionadas a clientes")
+        @Api(tags = { "Client" }, value = "clients", description = "Operações relacionadas a clientes")
 
-        public class ClienteController {
+        public class ClientController {
 
-            @Autowired
+            //@Autowired
             private IClienteService service;
 
             @ApiResponses(value = {
@@ -31,36 +29,36 @@ import java.util.List;
 
             @ApiOperation(value = "Listar todos os clientes", nickname = "getCliente")
             @GetMapping("/clientes")
-            public ResponseEntity<List<Cliente>> recuperarTodos() {
-                return ResponseEntity.ok().body(service.buscarTodosClientes());
+            public ResponseEntity<Object> getAll() {
+                return ResponseEntity.ok().body(service.getAllClient());
             }
 
-            @ApiOperation(value = "Listar cliente pelo ID", nickname = "getCliente")
+            @ApiOperation(value = "Listar cliente pelo ID", nickname = "getClient")
 
             @GetMapping("/clientes/{id}")
-            public ResponseEntity<Cliente> buscarPeloId(@PathVariable Integer id) {
-                return ResponseEntity.ok().body(service.buscarPeloIdCliente(id));
+            public ResponseEntity<Object> searchById(@PathVariable Integer id) {
+                return ResponseEntity.ok().body(service.searchByIdClient(id));
             }
 
-            @ApiOperation(value = "Cadastrar cliente", nickname = "postCliente")
+            @ApiOperation(value = "Cadastrar cliente", nickname = "postClient")
             @PostMapping("/clientes")
             @RequestMapping(value = "/clientes", method =  RequestMethod.POST, produces="application/json", consumes="application/json")
-            public ResponseEntity<Cliente> incluirNovo(@RequestBody @Valid Cliente novo) {
-                return ResponseEntity.status(HttpStatus.CREATED).body(service.criarNovoCliente(novo));
+            public ResponseEntity<Object> addNew(@RequestBody @Valid Client novo) {
+                return ResponseEntity.status(HttpStatus.CREATED).body(service.createNewClient(novo));
 
             }
 
-            @ApiOperation(value = "Atualizar cliente", nickname = "putCliente")
+            @ApiOperation(value = "Atualizar cliente", nickname = "putClient")
             @PutMapping("/clientes")
             @RequestMapping(value = "/clientes", method =  RequestMethod.PUT, produces="application/json", consumes="application/json")
-            public ResponseEntity<Cliente> alterar(@RequestBody @Valid Cliente dados) {
-                return ResponseEntity.ok().body(service.atualizarDadosCliente(dados));
+            public ResponseEntity<Client> change(@RequestBody @Valid Client data) {
+                return ResponseEntity.ok().body((Client) service.updateDataClient(data));
             }
 
-            @ApiOperation(value = "Deletar cliente pelo ID", nickname = "deleteCliente")
+            @ApiOperation(value = "Deletar cliente pelo ID", nickname = "deleteClient")
             @DeleteMapping("/clientes/{id}")
-            public ResponseEntity<Void> excluir(@PathVariable Integer id) {
-                service.excluirCliente(id);
+            public ResponseEntity<Void> delete(@PathVariable Integer id) {
+                service.deleteClient(id);
                 return ResponseEntity.ok().build();
             }
 
