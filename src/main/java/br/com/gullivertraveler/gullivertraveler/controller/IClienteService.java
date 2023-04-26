@@ -2,7 +2,7 @@ package br.com.gullivertraveler.gullivertraveler.controller;
 
 import br.com.gullivertraveler.gullivertraveler.model.Client;
 
-public interface IClienteService {
+interface IClientService {
     void deleteClient(Integer id);
 
     Object updateDataClient(Client data);
@@ -11,5 +11,5 @@ public interface IClienteService {
 
     Object createNewClient(Client novo);
 
-    Object getAllClient();
+    IClientService getAllClient();
 }

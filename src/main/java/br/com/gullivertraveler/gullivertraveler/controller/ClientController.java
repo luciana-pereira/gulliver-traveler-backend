@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
         public class ClientController {
 
             //@Autowired
-            private IClienteService service;
+            private IClientService service;
 
             @ApiResponses(value = {
                     @ApiResponse(code = 200, message = "Retorna a lista de clientes"),
@@ -27,36 +27,36 @@ import org.springframework.web.bind.annotation.*;
                     @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
             })
 
-            @ApiOperation(value = "Listar todos os clientes", nickname = "getCliente")
-            @GetMapping("/clientes")
+            @ApiOperation(value = "Listar todos os clientes", nickname = "getClient")
+            @GetMapping("/client")
             public ResponseEntity<Object> getAll() {
                 return ResponseEntity.ok().body(service.getAllClient());
             }
 
             @ApiOperation(value = "Listar cliente pelo ID", nickname = "getClient")
 
-            @GetMapping("/clientes/{id}")
+            @GetMapping("/client/{id}")
             public ResponseEntity<Object> searchById(@PathVariable Integer id) {
                 return ResponseEntity.ok().body(service.searchByIdClient(id));
             }
 
             @ApiOperation(value = "Cadastrar cliente", nickname = "postClient")
-            @PostMapping("/clientes")
-            @RequestMapping(value = "/clientes", method =  RequestMethod.POST, produces="application/json", consumes="application/json")
+            @PostMapping("/client")
+            @RequestMapping(value = "/client", method =  RequestMethod.POST, produces="application/json", consumes="application/json")
             public ResponseEntity<Object> addNew(@RequestBody @Valid Client novo) {
                 return ResponseEntity.status(HttpStatus.CREATED).body(service.createNewClient(novo));
 
             }
 
             @ApiOperation(value = "Atualizar cliente", nickname = "putClient")
-            @PutMapping("/clientes")
-            @RequestMapping(value = "/clientes", method =  RequestMethod.PUT, produces="application/json", consumes="application/json")
+            @PutMapping("/client")
+            @RequestMapping(value = "/client", method =  RequestMethod.PUT, produces="application/json", consumes="application/json")
             public ResponseEntity<Client> change(@RequestBody @Valid Client data) {
                 return ResponseEntity.ok().body((Client) service.updateDataClient(data));
             }
 
             @ApiOperation(value = "Deletar cliente pelo ID", nickname = "deleteClient")
-            @DeleteMapping("/clientes/{id}")
+            @DeleteMapping("/client/{id}")
             public ResponseEntity<Void> delete(@PathVariable Integer id) {
                 service.deleteClient(id);
                 return ResponseEntity.ok().build();

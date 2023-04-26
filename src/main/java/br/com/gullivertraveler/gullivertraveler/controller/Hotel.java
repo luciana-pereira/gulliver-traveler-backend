@@ -2,11 +2,12 @@ package br.com.gullivertraveler.gullivertraveler.controller;
 
 import jakarta.servlet.ServletRequestWrapper;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Hotel {
 
-    ArrayList<Hotel> list = new ArrayList<Hotel>();
+    ArrayList<Hotel> list = new ArrayList<>();
 
         //list.add(new ("Barra Funda","R. Eduardo Viana, 163 - Barra Funda, São Paulo - SP, 01133-040•(11) 3393-7300"));
         //list.add(new ("Ape Paulista Bela Cintra"," R. Bela Cintra, 934 - Consolação, São Paulo - SP, 01415-002"));
@@ -19,6 +20,10 @@ public class Hotel {
     //int classificationSelection = Integer.parseInt(request.getParameter("selectClassif"));
 
     ArrayList<Hotel> listFiltrate = new ArrayList<Hotel>();
+
+    public Hotel(String digiteONmeDoHotel) {
+
+    }
     //for(Hotel hotel: list) {
       //  if (hotel.getClassification() == classificationSelection) listFiltrate.add(hotel);
    // }
