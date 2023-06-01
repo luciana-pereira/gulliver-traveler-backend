@@ -6,10 +6,6 @@ import java.time.LocalDate;
 
 @Table(name = "user")
 @Entity
-//@Getter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@EqualsAndHashCode(of = "id")
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
