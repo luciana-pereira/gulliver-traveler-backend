@@ -2,7 +2,6 @@ package com.gullivertravelerbackend.gullivertravelerbackend.controller;
 
 import com.gullivertravelerbackend.gullivertravelerbackend.entity.User;
 import com.gullivertravelerbackend.gullivertravelerbackend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,21 +11,22 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
     private UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping
     public void createUser(@RequestBody User user) {
         userRepository.save(user);
-        return;
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<User> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users;
+        return userRepository.findAll();
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -58,4 +58,3 @@ public class UserController {
         userRepository.deleteById(id);
     }
 }
-

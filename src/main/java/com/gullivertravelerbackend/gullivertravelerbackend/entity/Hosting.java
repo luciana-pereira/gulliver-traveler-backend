@@ -1,6 +1,6 @@
 package com.gullivertravelerbackend.gullivertravelerbackend.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ public class Hosting {
     private String name;
     private String address;
     private int number;
+    private String district;
     private String city;
     private String state;
     private String country;
@@ -23,7 +24,7 @@ public class Hosting {
     private String about_me;
     @Column(length = 2000)
     private String description;
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private List<String> photos;
 
     public int getId() {
@@ -51,6 +52,15 @@ public class Hosting {
     public void setNumber(int number) {
         this.number = number;
     }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     public String getCity() {
         return city;
     }
