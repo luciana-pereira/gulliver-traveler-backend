@@ -21,6 +21,9 @@ public class User {
     private String country;
     private String address;
     private int number;
+    private int type;
+    private String cep;
+    private String district;
 
     public int getId() {
         return id;
@@ -120,5 +123,29 @@ public class User {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 }
